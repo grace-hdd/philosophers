@@ -32,11 +32,11 @@ static void	grab_forks(t_philo *philo)
 
 static void	eat(t_philo *philo)
 {
-	print_status(philo, "is eating");
 	pthread_mutex_lock(&philo->shared->state_mutex);
 	philo->last_meal_ms = get_time_ms();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->shared->state_mutex);
+	print_status(philo, "is eating");
 	usleep(philo->shared->params.time_to_eat * 1000);
 }
 
