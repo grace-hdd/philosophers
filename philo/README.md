@@ -83,3 +83,4 @@ Deadlocks are avoided by enforcing a **consistent fork-locking strategy**
 ```shell
 ./philo 1 800 200 200
 ```
+
