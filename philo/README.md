@@ -71,16 +71,15 @@ Deadlocks are avoided by enforcing a **consistent fork-locking strategy**
 ```
 
 ### Examples
-Standard Simulation
+- Standard Simulation
 ```shell
 ./philo 5 800 200 200
 ```
-Simulation With Meal Time
+- Simulation With Meal Time
 ```shell
 ./philo 4 410 200 200 7
 ```
-Single Philospher Case
+- Single Philospher Case
 ```shell
 ./philo 1 800 200 200
 ```
-
