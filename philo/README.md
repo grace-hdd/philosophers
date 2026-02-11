@@ -69,4 +69,51 @@ make clean	# Remove object files
 make fclean	# Remove object files and executable
 make re		# Recompile everything
 ```
+---
+
+### Usage
+```bash
+./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philospher_must_eat]
+```
+
+### Arguments
+- number_of_philosphers: Number of philosophers (also number of forks)
+- time_to_die: Time (in ms) before a philosopher dies if they don't eat
+- time_to_eat: Time (in ms) a philosopher spends eating
+- time_to_sleep: Time (in ms) a philosopher spends sleeping
+- number_of_times_each_philsopher_must_eat (optional): Simulation stops once all philosophers eat this many times
+
+### Example
+
+```bash
+./philo 5 800 200 200
+```
+This means:
+- 5 philosophers
+- A philosopher dies if they don't eat withing 800ms
+- Eating takes 200ms
+- Sleeping takes 200ms
+- simulation stops when one philosopher dies
+
+Example with required meals:
+```bash
+./philo 5 800 200 200 7
+```
+The simulation stops once each philosopher has eaten at least 7 times
+
+### Output format
+The program logs state changes in the following format:
+```bash
+timestamp_in_ms X has taken a fork
+timestamp_in_ms X is eating
+timestamp_in_ms X is sleeping
+timestamp_in_ms X is thinking
+timestamp_in_ms X died
+```
+Where:
+- timestamp_in_ms -> time since simulation start (in ms)
+- X -> philosopher number
+* Messages do not overlap
+* Death is printed within 10ms of detection
+* No data races
 
