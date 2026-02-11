@@ -39,7 +39,7 @@ void	responsive_sleep(t_shared *shared, long duration_ms)
 			break ;
 		}
 		pthread_mutex_unlock(&shared->state_mutex);
-		usleep(500);
+		usleep(1000);
 	}
 }
 

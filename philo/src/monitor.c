@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: login <login@student.42.fr>                +#+  +:+       +#+        */
+/*   By: grhaddad <grhaddad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 12:00:00 by login             #+#    #+#             */
-/*   Updated: 2023/01/01 12:00:00 by login            ###   ########.fr       */
+/*   Created: 2026/02/06 13:50:07 by grhaddad          #+#    #+#             */
+/*   Updated: 2026/02/06 13:50:07 by grhaddad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	start_simulation(t_philo *philos, t_shared *shared)
 		if (pthread_create(&philos[i].thread, NULL,
 				&philosopher_routine, &philos[i]) != 0)
 			return (1);
-		usleep(200);
+		usleep(1000);
 		i++;
 	}
 	monitor_philosophers(philos, shared);

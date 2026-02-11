@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grhaddad <grhaddad@student.42beirut.com>   +#+  +:+       +#+        */
+/*   By: grhaddad <grhaddad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 12:00:00 by grhaddad          #+#    #+#             */
-/*   Updated: 2023/01/01 12:00:00 by grhaddad         ###   ########.fr       */
+/*   Created: 2026/02/06 13:50:29 by grhaddad          #+#    #+#             */
+/*   Updated: 2026/02/06 13:50:29 by grhaddad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	cleanup_forks(t_shared *shared)
 {
 	int	i;
 
+	if (!shared->forks)
+		return ;
 	i = 0;
 	while (i < shared->n_philo)
 	{
@@ -23,6 +25,7 @@ void	cleanup_forks(t_shared *shared)
 		i++;
 	}
 	free(shared->forks);
+	shared->forks = NULL;
 }
 
 void	cleanup_shared(t_shared *shared)

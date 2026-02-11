@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grhaddad <grhaddad@student.42beirut.com>   +#+  +:+       +#+        */
+/*   By: grhaddad <grhaddad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 12:00:00 by grhaddad          #+#    #+#             */
-/*   Updated: 2023/01/01 12:00:00 by grhaddad         ###   ########.fr       */
+/*   Created: 2026/02/06 13:49:25 by grhaddad          #+#    #+#             */
+/*   Updated: 2026/02/06 13:49:25 by grhaddad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_philo	*init_philos(t_shared *shared)
 	t_philo	*philos;
 	int		i;
 
-	philos = malloc(sizeof(t_philo) * shared->n_philo);
+	philos = malloc(sizeof(*philos) * shared->n_philo);
 	if (!philos)
 		return (NULL);
 	i = 0;
@@ -78,7 +78,7 @@ t_philo	*init_philos(t_shared *shared)
 		philos[i].id = i + 1;
 		philos[i].left_fork = i;
 		philos[i].right_fork = (i + 1) % shared->n_philo;
-		philos[i].last_meal_ms = shared->start_time_ms;
+		philos[i].last_meal_ms = get_time_ms();
 		philos[i].meals_eaten = 0;
 		philos[i].shared = shared;
 		i++;
