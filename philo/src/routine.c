@@ -14,19 +14,61 @@
 
 static void	grab_forks(t_philo *philo)
 {
+	int	first_fork;
+	int	second_fork;
+	int	locked_first;
+
+	/* Keep same ordering by parity */
 	if (philo->id % 2 == 0)
 	{
-		pthread_mutex_lock(&philo->shared->forks[philo->right_fork]);
-		print_status(philo, "has taken a fork");
-		pthread_mutex_lock(&philo->shared->forks[philo->left_fork]);
-		print_status(philo, "has taken a fork");
+		first_fork = philo->right_fork;
+		second_fork = philo->left_fork;
 	}
 	else
 	{
-		pthread_mutex_lock(&philo->shared->forks[philo->left_fork]);
-		print_status(philo, "has taken a fork");
-		pthread_mutex_lock(&philo->shared->forks[philo->right_fork]);
-		print_status(philo, "has taken a fork");
+		first_fork = philo->left_fork;
+		second_fork = philo->right_fork;
+	}
+	locked_first = 0;
+	while (1)
+	{
+		/* Check for stop request */
+		pthread_mutex_lock(&philo->shared->state_mutex);
+		if (philo->shared->stop)
+		{
+			pthread_mutex_unlock(&philo->shared->state_mutex);
+			if (locked_first)
+				pthread_mutex_unlock(&philo->shared->forks[first_fork]);
+			return ;
+		}
+		pthread_mutex_unlock(&philo->shared->state_mutex);
+
+		if (!locked_first)
+		{
+			if (pthread_mutex_trylock(&philo->shared->forks[first_fork]) == 0)
+			{
+				locked_first = 1;
+				print_status(philo, "has taken a fork");
+			}
+			else
+				usleep(100);
+		}
+		else
+		{
+			/* Try to get second fork */
+			if (pthread_mutex_trylock(&philo->shared->forks[second_fork]) == 0)
+			{
+				print_status(philo, "has taken a fork");
+				return ;
+			}
+			else
+			{
+				/* Couldn't get second, release first and retry */
+				pthread_mutex_unlock(&philo->shared->forks[first_fork]);
+				locked_first = 0;
+				usleep(100);
+			}
+		}
 	}
 }
 

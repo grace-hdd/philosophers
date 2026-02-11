@@ -27,6 +27,7 @@ static int	run_simulation(t_params *params)
 	}
 	if (start_simulation(philos, &shared) != 0)
 	{
+		/* Ensure we cleanup resources even on simulation start failure */
 		cleanup_philos(philos, &shared);
 		cleanup_shared(&shared);
 		return (1);

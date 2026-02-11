@@ -75,13 +75,25 @@ void	monitor_philosophers(t_philo *philos, t_shared *shared)
 int	start_simulation(t_philo *philos, t_shared *shared)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (i < shared->n_philo)
 	{
 		if (pthread_create(&philos[i].thread, NULL,
 				&philosopher_routine, &philos[i]) != 0)
+		{
+			pthread_mutex_lock(&shared->state_mutex);
+			shared->stop = 1;
+			pthread_mutex_unlock(&shared->state_mutex);
+			j = 0;
+			while (j < i)
+			{
+				pthread_join(philos[j].thread, NULL);
+				j++;
+			}
 			return (1);
+		}
 		usleep(200);
 		i++;
 	}

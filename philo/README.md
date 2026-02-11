@@ -1,86 +1,72 @@
 *This project has been created as part of the 42 curriculum by grhaddad.*
+---
 
 # Philosophers
 
-This project is an implementation of the **Dining Philosophers** problem, a classic synchronization problem in computer science.  
-It focuses on managing **concurrency**, **shared resources**, and **time-sensitive state changes**, while avoiding **deadlocks**, **data races**, and **starvation**.
+### Description
+Philosophers is a concurrency project from the 42 curriculum that explores the fundamentals of multithreading, synchronization, and shared resource management in C.
 
-The project is implemented **exclusively using threads and mutexes**, in accordance with the mandatory requirements of the 42 curriculum.
+The project is based on the classic Dining Philosophers Problem, a well-known synchronization challenge in computer science.
 
----
+A number of philosophers sit around a circular table.
+Each philosopher alternates between:
+🍝 Eating
+💭 Thinking
+😴 Sleeping
+To eat, a philosopher must pick up two forks — one on the left and one on the right.
+Since forks are shared resources between neighbors, improper synchronization can lead to:
+❌ Deadlocks
+❌ Data races
+❌ Starvation
 
-## Project Overview
+The goal of this project is to design a robust, race-condition-free simulation where:
+Each philosopher is implemented as a separate thread
+Forks are protected using mutexes
+No philosopher dies unless the simulation rules require it
+Output logs are synchronized and formatted precisely
+Memory is properly managed (no leaks)
+No global variables are used
+The simulation ends when:
+A philosopher dies (fails to eat within time_to_die), or
+All philosophers have eaten a required number of times (if specified)
 
-A number of philosophers are sitting at a round table. In the center of the table is a large bowl of spaghetti.  
-Between each pair of philosophers lies exactly **one fork**.
+🎯 Learning Objectives
 
-Rules of the simulation:
-
-- Each philosopher alternates between **eating**, **sleeping**, and **thinking**
-- To eat, a philosopher must hold **two forks** (left and right)
-- Philosophers do **not communicate** with each other
-- Philosophers do **not know** if another philosopher is about to die
-- The simulation stops:
-  - When a philosopher dies  
-  - Or, optionally, when all philosophers have eaten a required number of times
-
-The goal is to ensure:
-- No philosopher starves
-- Forks are never shared simultaneously
-- Logs are printed consistently and without overlap
-
----
-
-## Concurrency Model
-
-### Philosophers
-
-- Each philosopher is represented by a **pthread**
-- Each philosopher runs the same routine in a loop:
-  1. Take forks
-  2. Eat
-  3. Sleep
-  4. Think
-
-### Forks
-
-- Each fork is represented by a **mutex**
-- Forks are shared resources and must be locked before use
-- Mutexes prevent simultaneous access to the same fork
+Through this project, I developed a deeper understanding of:
+Thread creation and lifecycle management (pthread_create, join, detach)
+Mutexes and critical section protection
+Avoiding deadlocks and starvation
+Accurate time management using gettimeofday
+Writing race-free concurrent programs
+Designing monitor systems to detect philosopher death
+Writing safe, leak-free C code under strict 42 Norm rules
 
 ---
 
-## Synchronization Strategy
+# Instructions
 
-- Fork mutexes protect fork access
-- A dedicated print mutex prevents output overlap
-- Meal times and counters are protected against race conditions
-- A shared simulation state is used to stop all threads safely
+### Compilation
 
-Deadlocks are avoided by enforcing a **consistent fork-locking strategy**  
-(e.g. ordered locking or odd/even philosopher behavior).
-
----
-
-## Usage
-
-### Program Execution
-
+The project must be compiled using cc with the required flags:
 ```shell
-./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [number_of_times_each_philosopher_must_eat]
+-Wall -Wextra -Werror
 ```
 
-### Examples
-- Standard Simulation
-```shell
-./philo 5 800 200 200
+To compile the program:
+```bash
+make
 ```
-- Simulation With Meal Time
-```shell
-./philo 4 410 200 200 7
+
+This will generate the executable:
+```bash
+./philo
 ```
-- Single Philospher Case
-```shell
-./philo 1 800 200 200
+
+Available Makefile rules:
+```bash
+make		# Compile the project
+make clean	# Remove object files
+make fclean	# Remove object files and executable
+make re		# Recompile everything
 ```
 

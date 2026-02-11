@@ -16,6 +16,8 @@ void	cleanup_forks(t_shared *shared)
 {
 	int	i;
 
+	if (!shared->forks)
+		return ;
 	i = 0;
 	while (i < shared->n_philo)
 	{
@@ -23,6 +25,7 @@ void	cleanup_forks(t_shared *shared)
 		i++;
 	}
 	free(shared->forks);
+	shared->forks = NULL;
 }
 
 void	cleanup_shared(t_shared *shared)

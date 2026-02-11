@@ -18,6 +18,9 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <signal.h>
+
+extern volatile sig_atomic_t	g_sigint;
 
 typedef struct s_params
 {
