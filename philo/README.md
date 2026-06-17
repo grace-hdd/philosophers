@@ -15,7 +15,7 @@ Each philosopher alternates between:
 - Sleeping
 - To eat, a philosopher must pick up two forks — one on the left and one on the right.
   
-Since forks are shared resources between neighbors, improper synchronization can lead to:
+Since forks are shared resources between neighbors, improper synchronization can lead to: </br>
 ❌ Deadlocks </br>
 ❌ Data races </br>
 ❌ Starvation </br>
