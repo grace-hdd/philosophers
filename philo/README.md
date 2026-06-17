@@ -13,7 +13,7 @@ Each philosopher alternates between:
 - Eating
 - Thinking
 - Sleeping
-To eat, a philosopher must pick up two forks — one on the left and one on the right.
+- To eat, a philosopher must pick up two forks — one on the left and one on the right.
 Since forks are shared resources between neighbors, improper synchronization can lead to:
 ❌ Deadlocks
 ❌ Data races
