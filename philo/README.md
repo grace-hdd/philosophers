@@ -121,12 +121,9 @@ Where:
 
 # Resources
 ### Learning materials used
-- Dining philosophers explanation (Youtube)
-<a href="https://www.youtube.com/watch?v=zOpzGHwJ3MU"></a>
-- 42 Cursus guide - Philosopher
-<a href="https://42-cursus.gitbook.io/guide/3-rank-03/philosophers"></a>
-- Threads & Concurrency explanation (Youtube)
-<a href="https://www.youtube.com/watch?v=uA8X5zNOGw8"></a>
+- <a href="https://www.youtube.com/watch?v=zOpzGHwJ3MU">Dining philosophers explanation (Youtube)</a>
+- <a href="https://42-cursus.gitbook.io/guide/3-rank-03/philosophers">42 Cursus guide - Philosopher</a>
+- <a href="https://www.youtube.com/watch?v=uA8X5zNOGw8">Threads & Concurrency explanation (Youtube)</a>
 
 ### Official Documentation
 - man pthread_create
