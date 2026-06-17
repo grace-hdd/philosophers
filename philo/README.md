@@ -16,9 +16,9 @@ Each philosopher alternates between:
 - To eat, a philosopher must pick up two forks — one on the left and one on the right.
   
 Since forks are shared resources between neighbors, improper synchronization can lead to:
-❌ Deadlocks
-❌ Data races
-❌ Starvation
+❌ Deadlocks </br>
+❌ Data races </br>
+❌ Starvation </br>
 
 The goal of this project is to design a robust, race-condition-free simulation where:
 Each philosopher is implemented as a separate thread
